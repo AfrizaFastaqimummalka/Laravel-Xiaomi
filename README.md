@@ -7,7 +7,8 @@
 ![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?style=flat-square&logo=laravel&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=flat-square&logo=bootstrap&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)
-![SQLite](https://img.shields.io/badge/Database-SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![NeonDB](https://img.shields.io/badge/Cloud-NeonDB-00E699?style=flat-square&logo=neon&logoColor=black)
 
 </div>
 
@@ -44,7 +45,26 @@ npm install
 # 3. Setup environment
 cp .env.example .env
 php artisan key:generate
+```
 
+### Konfigurasi Database (NeonDB / PostgreSQL)
+
+Project ini pakai **NeonDB** — PostgreSQL serverless gratis di cloud. Edit `.env` dan isi bagian database:
+
+```env
+DB_CONNECTION=pgsql
+DB_URL=postgresql://USERNAME:PASSWORD@HOST/neondb?sslmode=require
+DB_HOST=your-host.neon.tech
+DB_PORT=5432
+DB_DATABASE=neondb
+DB_USERNAME=your-username
+DB_PASSWORD=your-password
+DB_SSLMODE=require
+```
+
+Daftar akun NeonDB gratis di [neon.tech](https://neon.tech), buat project baru, lalu copy connection string-nya ke `.env`.
+
+```bash
 # 4. Jalankan migrasi + seeder
 php artisan migrate --seed
 
@@ -59,9 +79,6 @@ php artisan serve
 ```
 
 Buka di browser: **http://localhost:8000**
-
-> **Pakai SQLite?** Pastikan file `database/database.sqlite` sudah ada sebelum migrate.
-> Kalau belum: `touch database/database.sqlite` (Linux/Mac) atau buat file kosong manual di Windows.
 
 ## 🔐 Akun Admin
 
@@ -103,7 +120,7 @@ resources/
 | Layer | Tool |
 |-------|------|
 | Framework | Laravel 13 |
-| Database | SQLite (dev) |
+| Database | PostgreSQL via NeonDB (serverless) |
 | CSS | Bootstrap 5.3 + custom |
 | Icons | Bootstrap Icons 1.11 |
 | Build tool | Vite 8 |
